@@ -19,30 +19,31 @@ fetch(url)
                                 </div>
                                 `                                          
         })
-        async function tratarBotao() {
-            let a = await document.querySelectorAll('#btn1')
-            console.log(a)
-            a.forEach(botao => {
-            botao.addEventListener('click', acionar1)
-                function acionar1() {
-                console.log()
-                botao.style.backgroundColor = 'rgb(241, 86, 86)'
-                botao.style.color = 'white'
-                }
-            })
-            let b = await document.querySelectorAll('#btn2')
-            console.log(b)
-            b.forEach(botao => {
-            botao.addEventListener('click', acionar2)
-                function acionar2() {
-                console.log()
-                botao.style.backgroundColor = 'rgb(142, 231, 142)'
-                botao.style.color = 'black'
-                botao.textContent = '✓ ADICIONADO'
-                }
-            })
-            acionar1()
-            acionar2()
-        }
         tratarBotao()
     })
+
+    async function tratarBotao() {
+        let a = await document.querySelectorAll('#btn1')
+        console.log(a)
+        a.forEach(botao => {
+        botao.addEventListener('click', acionar1)
+            function acionar1() {
+            console.log()
+            botao.style.backgroundColor = 'rgb(241, 86, 86)'
+            botao.style.color = 'white'
+            }
+        })
+        let b = await document.querySelectorAll('#btn2')
+        console.log(b)
+        b.forEach(botao => {
+        botao.addEventListener('click', acionar2)
+            function acionar2() {
+            console.log()
+            botao.style.backgroundColor = 'rgb(142, 231, 142)'
+            botao.style.color = 'black'
+            botao.textContent = '✓ ADICIONADO'
+            }
+        })
+        acionar1()
+        acionar2()
+    }
