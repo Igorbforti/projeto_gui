@@ -8,42 +8,50 @@ fetch(url)
         let div = document.querySelector('#info')
         div.innerHTML = ""
         console.log(data)
-        let produtos = data
-        produtos.forEach(prod => {
+        let products = data
+        products.forEach(prod => {
             div.innerHTML +=  `<div class = card>
                                 <button class = 'fas fa-heart' id = 'btn1'></button> 
                                 <img src = '${prod.imageUrl}'><br>
                                 <h3>${prod.productName}</h3><br>
-                                <p>R$ ${prod.price}</p><br>
+                                <p>${convertCurrency(prod.price)}</p><br>
                                 <button id = btn2>ADICIONAR</button>
                                 </div>
                                 `                                          
         })
-        tratarBotao()
+        let wishlistButton = document.querySelectorAll('#btn1')
+        let buyButton = document.querySelectorAll('#btn2')
+        handleWishlist(wishlistButton)
+        handleAddToCart(buyButton)
     })
 
-    async function tratarBotao() {
-        let a = await document.querySelectorAll('#btn1')
-        console.log(a)
-        a.forEach(botao => {
-        botao.addEventListener('click', acionar1)
-            function acionar1() {
-            console.log()
-            botao.style.backgroundColor = 'rgb(241, 86, 86)'
-            botao.style.color = 'white'
-            }
+    function convertCurrency(valueToConvert) {
+        console.log(valueToConvert)
+        return (valueToConvert / 100).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+    }
+
+    function handleWishlist(wishlistBtn) {
+        wishlistBtn.forEach(button => {
+            button.addEventListener('click', function() {
+                if (button.classList.contains("selected")) {
+                    button.classList.remove("selected")
+                } else {
+                    button.classList.add("selected")
+                }
+            })
         })
-        let b = await document.querySelectorAll('#btn2')
-        console.log(b)
-        b.forEach(botao => {
-        botao.addEventListener('click', acionar2)
-            function acionar2() {
-            console.log()
-            botao.style.backgroundColor = 'rgb(142, 231, 142)'
-            botao.style.color = 'black'
-            botao.textContent = '✓ ADICIONADO'
-            }
+    }
+
+    function handleAddToCart(buyBtn) {
+        buyBtn.forEach(button => {
+            button.addEventListener('click', function() {
+                if (button.classList.contains("selected")) {
+                    button.classList.remove("selected")
+                    button.textContent = 'ADICIONAR'
+                } else {
+                    button.classList.add("selected")
+                    button.textContent = '✓ ADICIONADO'
+                }
+            })
         })
-        acionar1()
-        acionar2()
     }
