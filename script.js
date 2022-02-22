@@ -50,7 +50,7 @@ fetch(url)
                     button.textContent = 'ADICIONAR'
                 } else {
                     button.classList.add("selected")
-                    button.textContent = '✓ ADICIONADO'
+                    button.textContent = '✓  ADICIONADO'
                 }
             })
         })
